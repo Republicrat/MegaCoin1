@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title>MegaCoin v1.0.2</title>
+	  <script type = "text/javascript">  
+	 var random = Math.random();
+	 var win_percentage = prompt("---------Please enter desired win percentage---------.","Enter percentage in decimal equivalent.");
+	 var jackpot_percentage = prompt("---------Please enter desired jackpot probability---------.","Enter probability in decimal equivalent.");
+	 var log = function()
+        {
+	    console.log(random);
+        };
+    var debt = 0;
+	var profit = 20.01;
+	  for (i=1;i>0;i++)
+		{
+		var wager = prompt("Please place wager - Numbers only.");
+		  if(wager > 10)
+		    {
+			alert("Wager to high (cannot exceed $10.00).");
+			break;
+			}
+		  if(wager < 0.50)
+		    {
+			alert("Wager to low (must be at least $0.50).");
+			break;
+			}
+				 //helps determine whether or not player wins and records how much money is made.
+				  if (random < jackpot_percentage)
+				    {
+					var debt = wager*3 + debt;
+                    }
+                  else if (random < win_percentage)
+				    {
+					var debt = wager*2 + debt;
+					}
+				  else
+                    {
+                    //I remember having a problem and having to fix it with multiplying by 1, I just
+                    //don't remember what the problem was.
+					var profit = wager*1 + profit*1;
+					}
+				     //determines whether or not player wins based on how much profit I have. Maybe change 10.01 to 0 and profit to equal 10.01?
+				     if (profit - debt < 10.01 && random < jackpot_percentage)
+				       {
+					   random = 0.4;
+					   var debt = debt - wager*3
+					   }
+				     else if (profit - debt < 10.01 && random < win_percentage)
+					   {
+					   random = 0.4;
+					   var debt = debt - wager*2
+					   }
+					 else if(profit - debt < 10.01)
+					   {
+					   random = 0.4;
+					   }
+					 else 
+				       {
+					   random = Math.random();
+					   }
+					   //above acts as safe guard to ensure I lose no money. Added in with 1.0.2
+                       if(random >= 0 && random < jackpot_percentage)
+		                 {
+		                 alert("Congratulations! You won! Please collect your earnings from your MegaCoin v1.0.1 vendor. Original wager:" + " $" + wager + ". " + "Wager value now: $" + wager*3 + ". You got the JackPot!");
+		                 log();
+			             }
+		               else if(random >= 0 && random < win_percentage)
+		                 {
+			             log();
+		                 alert("Congratulations! You won! Please collect your earnings from your MegeCoin v1.0.1 vendor. Original wager:" + " $" + wager + ". " + "Wager value now: $" + wager*2 + ".");
+		                 }
+		               else
+		                 {
+			             log();
+		                 alert("Sorry, you lose. Please try again!");
+		                 }
+		            
+					          alert("MegaCoin v1.0.2 Please press OK to play again.");
+							  console.log(profit);
+							  console.log(debt);
+							  console.log(wager);
+		 }
+	</script>
+  </head>
+  <body>
+    <h1>MegaCoin v1.0.2</h1>
+	<p>Thanks For Playing. Press "Refresh" to Play Again.</p>
+  </body>
+</html>
