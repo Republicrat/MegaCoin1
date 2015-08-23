@@ -1,0 +1,2 @@
+# MegaCoin1
+MegaCoin
